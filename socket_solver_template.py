@@ -9,8 +9,8 @@ text="Question:"
 
 def main():
     while True:
-        receive_text=io.recvuntil(text)
-        io.sendline(four_operations(receive_text))
+        receive_text=io.recvuntil(text).decode()
+        io.sendline(four_operations(receive_text).encode())
 
 def four_operations(formula):
-    return eval(formula)
+    return str(eval(formula))
