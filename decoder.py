@@ -56,9 +56,9 @@ def magic_decode(input_text):
     return results
 
 
-input_str="5131524765323975615739755832786h6557567y6331396h636d566f5a6n567u66513d3d"
+input_str="513152476532397561573975583278686557567963313968636d56665a6e567566513d3d"
 decoded_text=magic_decode(input_str)
-print(f"デコード結果：{decoded_text}")
+print(f"デコード結果：{decoded_text}\n")
 
-for i in decoded_text.values():
-    print(f"再帰デコード1：{magic_decode(i)}")
+for name,i in decoded_text.items():
+    print(f"再帰デコード({name}->)：{magic_decode(i)}\n")
