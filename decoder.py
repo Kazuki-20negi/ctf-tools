@@ -10,7 +10,7 @@ def try_base64(text):
     except:
         return None
 
-def tyr_base32(text):
+def try_base32(text):
     try:
         return base64.b32decode(text).decode("utf-8")
     except:
@@ -34,7 +34,26 @@ def try_hex(text):
     except:
         return None
 
-
-
+def is_readable_text(s):
+    if not s:
+        return False
+    return s.isprintable()
 
 def magic_decode(input_text):
+    results={}
+    decoders = {
+        "Base64": try_base64,
+        "Base32": try_base32,
+        "URL": try_url,
+        "Hex": try_hex,
+        "ROT13": try_rot13,
+    }
+
+    for name, func in decoders.items():
+        decoded=func(input_text)
+        if decoded and is_readable_text(decoded):
+            results[name]=decoded
+    return results
+
+input_str="test"
+print(magic_decode(input_str))
