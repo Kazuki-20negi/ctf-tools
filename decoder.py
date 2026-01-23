@@ -55,5 +55,10 @@ def magic_decode(input_text):
             results[name]=decoded
     return results
 
-input_str="test"
-print(magic_decode(input_str))
+
+input_str="SGVsbG8gV29ybGQ="
+decoded_text=magic_decode(input_str)
+print(f"デコード結果：{decoded_text}")
+
+for i in decoded_text.values():
+    print(f"再帰デコード：{magic_decode(i)}")
