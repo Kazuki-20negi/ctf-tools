@@ -20,5 +20,9 @@ for file_type, magic_bytes in SIGNATURES.items():
         if found_index==-1:
             break
         if found_index>0:
-            print(f"ヘッダを発見")
-            
+            print(f"{file_type}ヘッダを発見")
+            finded_data=data[found_index:]
+            output_name=f"hidden.{file_type.lower()}"
+            with open(output_name, "wb") as out_file:
+                out_file.write(finded_data)
+                print(f"{output_name}を保存しました")
