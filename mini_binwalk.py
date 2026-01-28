@@ -8,7 +8,7 @@ SIGNATURES = { #マジックナンバー
     'GIF': b'GIF89a',                # GIF89a
 }
 
-target_file="test.jpg"
+target_file="hidden_cat.jpg"
 
 with open(target_file, "rb") as f:
     data=f.read()
@@ -26,3 +26,4 @@ for file_type, magic_bytes in SIGNATURES.items():
             with open(output_name, "wb") as out_file:
                 out_file.write(finded_data)
                 print(f"{output_name}を保存しました")
+                break
