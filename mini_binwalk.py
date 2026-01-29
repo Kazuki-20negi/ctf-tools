@@ -1,5 +1,6 @@
 import os
 import sys
+import zlin
 
 SIGNATURES = { #マジックナンバー
     'ZIP': b'\x50\x4B\x03\x04',      # PK..
