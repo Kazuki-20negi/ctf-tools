@@ -7,6 +7,7 @@ SIGNATURES = { #マジックナンバー
     'PNG': b'\x89PNG\r\n\x1a\n',     # .PNG....
     'PDF': b'%PDF-',                 # %PDF-
     'GIF': b'GIF89a',                # GIF89a
+    'zlib': b'\x78\x9C',
 }
 
 target_file="hidden_cat.jpg"
@@ -22,7 +23,13 @@ for file_type, magic_bytes in SIGNATURES.items():
             break
         if found_index>0:
             print(f"{file_type}ヘッダを発見")
-            finded_data=data[found_index:]
+            if file_type=="zlib":
+                try:
+                    finded_data=zlib.decompress(data[found_index:])
+                except:
+                    pass
+            else:
+                finded_data=data[found_index:]
             output_name=f"hidden.{file_type.lower()}"
             with open(output_name, "wb") as out_file:
                 out_file.write(finded_data)
